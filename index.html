@@ -46,7 +46,17 @@
 					<h2>Overview</h2>
 					<ol>
 						<li class="fragment"><strong>Introduction</strong></li>
-						<li class="fragment"><strong>Advanced Characteristics of the language</strong></li>
+						<li class="fragment">
+							<strong>Advanced Characteristics of the language</strong>
+							<ul>
+								<li class="fragment">Globals</li>
+								<li class="fragment">Scope and Closures</li>
+								<li class="fragment">First Class Functions</li>
+								<li class="fragment">Asynchronous programming</li>
+								<li class="fragment">Prototype based inheritance</li>
+								<li class="fragment">This</li>
+							</ul>
+						</li>
 						<li class="fragment"><strong>Tools, frameworks, projects</strong></li>
 					</ol>
 
@@ -56,11 +66,33 @@
 				</section>
 				
 				<section>
-					<h2>Introduction</h2>
-					<p>
-						Running with scissors
-					</p>
-					<img src="img/running.gif" alt="Running with scissors" />
+					<section>
+						<h2>Introduction</h2>
+						<blockquote>
+							Coding Javascript is like running with scissors - Very fun, but potentially dangerous
+						</blockquote>
+						<img src="img/running.gif" alt="Running with scissors" />
+					</section>
+					<section>
+						<blockquote>
+							With great power comes great responsibility
+						</blockquote>
+					</section>
+					<section>
+						<h3>Lots of bad parts</h3>
+						<pre><code contenteditable>"3" -+-+-+ "1" + "1" / "3" * "6" + "2"<br/>// Will output "42"</code></pre>
+					</section>
+					<section>
+						<h3>Some really good parts</h3>
+						<pre><code contenteditable>var add = function(a, b) {
+  return a + b;
+}
+
+//create function that returns 10 + argument
+var addTen = add.curry(10);
+
+addTen(20); //30</code></pre>
+					</section>
 				</section>
 
 				<section>
