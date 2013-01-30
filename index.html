@@ -23,6 +23,7 @@
    document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
   </script>
 
+
   <!--[if lt IE 9]>
   <script src="lib/js/html5shiv.js"></script>
   <![endif]-->
@@ -206,10 +207,16 @@
      <p>
       Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
      </p>
-     <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">Reveal.addEventListener( 'customevent', function() {
- console.log( '"customevent" has fired' );
-} );
-     </code></pre>
+     <pre><code contenteditable style="font-size: 18px; margin-top: 20px;"> var uppercase = function(str){
+  var ret = "";
+  for(counter = 0; counter < 10; counter++){
+    ret += str[counter].toUpperCase();
+  }
+  return ret;
+}
+
+var counter = uppercase("foo");
+// => TypeError: Cannot call method 'toUpperCase' of undefined </code></pre>
     </section>
 
     <section>
