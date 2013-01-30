@@ -80,7 +80,10 @@
 					</section>
 					<section>
 						<h3>Lots of bad parts</h3>
-						<pre><code contenteditable>"3" -+-+-+ "1" + "1" / "3" * "6" + "2"<br/>// Will output "42"</code></pre>
+						<pre><code contenteditable>alert( "3" -+-+-+ "1" + "1" / "3" * "6" + "2" )</code></pre>
+            <button class="exec-code">Run it!</button>
+            <pre><code contenteditable class="executable">alert( (![]+[])[+[]]+(![]+[])[+!+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]] )</code></pre>
+            <button class="exec-code">Run it!</button>
 					</section>
 					<section>
 						<h3>Some really good parts</h3>
@@ -229,6 +232,18 @@ addTen(20); //30</code></pre>
     ]
    });
 
+  </script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <script>
+    jQuery.noConflict();
+
+    jQuery(function(){
+      jQuery('.exec-code').on('click', function(e){
+        e.preventDefault();
+        var code = jQuery(this).prev('pre').find('code').text();
+        eval(code); // :(
+      });
+    });
   </script>
 
  </body>
