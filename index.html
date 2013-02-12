@@ -12,7 +12,7 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/netlight.css" id="theme">
+		<link rel="stylesheet" href="css/theme/advancedjsintro.css" id="theme">
 
 	  	<!-- For syntax highlighting -->
 	  	<link rel="stylesheet" href="lib/css/tomorrow-night-bright.css">
@@ -41,7 +41,26 @@
 						<small>Johan Bjurling / Fredrik Wärnsberg</small>
 					</p>
 				</section>
-
+				<section>
+					<h2>Fredrik Wärnsberg</h2>
+				</section>
+				<section>
+					<h2>Johan Bjurling</h2>
+				</section>
+				<section>
+					<h2>netlight.js</h2>
+					<img src="img/ccell.png" style="width: 400px;" />
+				</section>
+				<section>
+					<h2>reveal.js</h2>
+					<p>Explain that this presentation is done using reveal.js. Apply new style using Javascript...</p>
+					<pre><code contenteditable>var h = document.getElementsByTagName("head")[0];
+var l = document.createElement("link");
+l.href = "css/theme/netlight.css";
+l.rel = "stylesheet";
+h.appendChild(l);</code></pre>
+					<button class="exec-code">Run it!</button>
+				</section>
 				<section>
 					<h2>Overview</h2>
 					<ol>
@@ -199,7 +218,9 @@ addTen(20); //30</code></pre>
       </section>
         </div>
       </div>
-
+	<div class="netlight-footer">
+		<div></div>
+	</div>
   <script src="lib/js/head.min.js"></script>
   <script src="js/reveal.min.js"></script>
 

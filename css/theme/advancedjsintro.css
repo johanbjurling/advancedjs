@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
 /**
- * Default theme for reveal.js.
+ * Beige theme for reveal.js.
  * 
  * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
  */
@@ -47,36 +47,20 @@
  * GLOBAL STYLES
  *********************************************/
 body {
-  /*background: #36185F;
-  background: -moz-radial-gradient(center, circle cover, #36185F 0%, #36185F 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #36185F), color-stop(100%, #36185F));
-  background: -webkit-radial-gradient(center, circle cover, #36185F 0%, #36185F 100%);
-  background: -o-radial-gradient(center, circle cover, #36185F 0%, #36185F 100%);
-  background: -ms-radial-gradient(center, circle cover, #36185F 0%, #36185F 100%);
-  background: radial-gradient(center, circle cover, #36185F 0%, #36185F 100%);
-  background-color: #36185F;*/
-background: #5d467f; /* Old browsers */
-background: -moz-radial-gradient(center, ellipse cover,  #5d467f 0%, #36185f 100%); /* FF3.6+ */
-background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#5d467f), color-stop(100%,#36185f)); /* Chrome,Safari4+ */
-background: -webkit-radial-gradient(center, ellipse cover,  #5d467f 0%,#36185f 100%); /* Chrome10+,Safari5.1+ */
-background: -o-radial-gradient(center, ellipse cover,  #5d467f 0%,#36185f 100%); /* Opera 12+ */
-background: -ms-radial-gradient(center, ellipse cover,  #5d467f 0%,#36185f 100%); /* IE10+ */
-background: radial-gradient(ellipse at center,  #5d467f 0%,#36185f 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5d467f', endColorstr='#36185f',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
+  background: #fff;
 }
 
 .reveal {
-  font-family: "PT Sans", sans-serif;
+  font-family: "Lato", Times, "Times New Roman", serif;
   font-size: 36px;
   font-weight: 200;
   letter-spacing: -0.02em;
-  color: #eeeeee;
+  color: #302d59;
 }
 
 ::selection {
   color: white;
-  background: #5d467f;
+  background: rgba(79, 64, 28, 0.99);
   text-shadow: none;
 }
 
@@ -90,18 +74,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5d467f', end
 .reveal h5,
 .reveal h6 {
   margin: 0 0 20px 0;
-  color: #eeeeee;
-  font-family: "TeX-Gyre", Impact, sans-serif;
+  color: #302d59;
+  font-family: "League Gothic", Impact, sans-serif;
   line-height: 0.9em;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
-}
-
-.reveal ul li { list-style: square; }
-
-.reveal {
-  text-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  text-shadow: none;
 }
 
 .reveal h1 {
@@ -112,7 +90,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5d467f', end
  * LINKS
  *********************************************/
 .reveal a:not(.image) {
-  color: #CC9933;
+  color: #8b743d;
   text-decoration: none;
   -webkit-transition: color .15s ease;
   -moz-transition: color .15s ease;
@@ -122,14 +100,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5d467f', end
 }
 
 .reveal a:not(.image):hover {
-  color: #CC9933;
+  color: #c0a86e;
   text-shadow: none;
   border: none;
 }
 
 .reveal .roll span:after {
   color: #fff;
-  background: #CC9933;
+  background: #564826;
 }
 
 /*********************************************
@@ -138,17 +116,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5d467f', end
 .reveal section img {
   margin: 15px 0px;
   background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 10px rgba(0, 0, 10px, 0.25);
-  -webkit-transition: all .2s linear;
-  -moz-transition: all .2s linear;
-  -ms-transition: all .2s linear;
-  -o-transition: all .2s linear;
-  transition: all .2s linear;
+  border: none;
 }
 
 .reveal a:hover img {
   background: rgba(255, 255, 255, 0.2);
-  border-color: #CC9933;
+  border-color: #8b743d;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
 }
 
@@ -157,38 +130,57 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5d467f', end
  *********************************************/
 .reveal .controls div.navigate-left,
 .reveal .controls div.navigate-left.enabled {
-  border-right-color: rgba(255, 255, 255, 0.75);
+  border-right-color: #8b743d;
 }
 
 .reveal .controls div.navigate-right,
 .reveal .controls div.navigate-right.enabled {
-  border-left-color: rgba(255, 255, 255, 0.75);
+  border-left-color: #8b743d;
 }
 
 .reveal .controls div.navigate-up,
 .reveal .controls div.navigate-up.enabled {
-  border-bottom-color: rgba(255, 255, 255, 0.75);
+  border-bottom-color: #8b743d;
 }
 
 .reveal .controls div.navigate-down,
 .reveal .controls div.navigate-down.enabled {
-  border-top-color: rgba(255, 255, 255, 0.75);
+  border-top-color: #8b743d;
 }
 
 .reveal .controls div.navigate-left.enabled:hover {
-  border-right-color: rgba(255, 255, 255, 0.95);
+  border-right-color: #c0a86e;
 }
 
 .reveal .controls div.navigate-right.enabled:hover {
-  border-left-color: rgba(255, 255, 255, 0.95);
+  border-left-color: #c0a86e;
 }
 
 .reveal .controls div.navigate-up.enabled:hover {
-  border-bottom-color: rgba(255, 255, 255, 0.95);
+  border-bottom-color: #c0a86e;
 }
 
 .reveal .controls div.navigate-down.enabled:hover {
-  border-top-color: rgba(255, 255, 255, 0.95);
+  border-top-color: #c0a86e;
+}
+
+.reveal .controls {
+	bottom: 50px;
+}
+/*********************************************
+ * NETLIGHT FOOTER
+ *********************************************/
+.netlight-footer {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+}
+.netlight-footer > div {
+	background: url("../../img/netlight_footer.png");
+	height: 40px;
+	width: 720px;
+	margin: 0 auto;
+	background-repeat: no-repeat;
 }
 
 /*********************************************
@@ -199,17 +191,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5d467f', end
 }
 
 .reveal .progress span {
-  background: white;
+  background: #8b743d;
   -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   -ms-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   -o-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
-}
-
-/*********************************************
- * NETLIGHT FOOTER
- *********************************************/
-.netlight-footer {
-	display: none !important;
 }
