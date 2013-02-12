@@ -122,7 +122,7 @@ addTen(20); //30</code></pre>
 						<h2>Closures</h2>
 					</section>
 					<section>
-						<h2>A simple example</h2>
+						<p>A simple example</p>
 						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function makeClosure() {
   var name = "Johan";
   return function() {
@@ -132,7 +132,7 @@ addTen(20); //30</code></pre>
 						<button class="exec-code">Run it!</button>
 					</section>
 					<section>
-						<h2>A somewhat more advanced example</h2>
+						<p>A somewhat more advanced example</p>
 						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function makeAdder(x) {
   return function(y) {
     return x + y;
@@ -178,7 +178,7 @@ addTen(20); //30</code></pre>
 					</section>
 					
 					<section>
-						<h2>Closures in loops</h2>
+						<p>Closures in loops</p>
 						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">var arrayOfFunctions = [];
 for (var i = 0; i < 3; i++) {
   arrayOfFunctions[i] = function() { alert(i); };
@@ -188,7 +188,7 @@ for (var i = 0; i < 3; i++) {
 					</section>
 					
 					<section>
-						<h2>Closures in constructor</h2>
+						<p>Closures in constructor</p>
 						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function MyConstructor(name) {
   this.name = name;
   this.getName = function() { return this.name; };
@@ -200,10 +200,83 @@ for (var i = 0; i < 3; i++) {
 				
 
 				<section>
-					<h2>First Class Functions</h2>
-					<img src="img/firstclass.jpg" alt="First Class Functions" />
-					<p>In this section Johan will explain what it means that Javascript functions are first class.</p>
+					<section>
+						<h2>First Class Functions</h2>
+						<img src="img/firstclass.jpg" alt="First Class Functions" />
+						<p>In this section Johan will explain what it means that Javascript functions are first class.</p>
+					</section>
+					<section>
+						<p>In Javascript, functions are objects and can thus be treated just like objects</p>
+
+						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function myFunction() {
+  alert("myFunction");
+}
+
+alert(myFunction instanceof Object);</code></pre>
+						<button class="exec-code">Run it!</button>
+					</section>
+					
+					<section>
+						<p>They can be stored in variables</p>
+						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">var f = function myFunction() {
+  alert("myFunction");
+}
+f();</code></pre>
+						<button class="exec-code">Run it!</button>
+						
+					</section>
+					<section>
+						<p>They can be sent as arguments to other functions</p>
+						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function myFunction(f) {
+  f();
+}
+</code></pre>
+						<button class="exec-code">Run it!</button>
+						
+					</section>
+					<section>
+						<p>They can be returned from functions</p>
+						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function myFunction() {
+  return function() {
+    alert("johan");							
+  };
+}</code></pre>
+						<button class="exec-code">Run it!</button>
+						
+					</section>
+					
+					<section>
+						<p>They can have properties</p>
+						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function myFunction() {
+  alert("alert!");							
+}
+myFunction.myProperty = "something";</code></pre>
+						<button class="exec-code">Run it!</button>
+						
+					</section>
+					
+					<section>
+						<p>They can be properties</p>
+						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">var myObject = {
+  myFunctionAsProperty: function() { alert("yeah"); }
+};</code></pre>
+						<button class="exec-code">Run it!</button>
+						
+					</section>
+					
+					<section>
+						<p>They can be dynamically created</p>
+						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function createFunction(whatToAlert) {
+  return function() {
+    alert(whatToAlert);
+  };
+}</code></pre>
+						<button class="exec-code">Run it!</button>
+						
+					</section>
 				</section>
+				
+				
 
 				<section>
 					<section>
