@@ -137,17 +137,154 @@ addTen(20); //30</code></pre>
 				<section>
 					<section>
 						<h2>Asynchronous programming</h2>
-						<p>In this section Fredrik will talk about the asynchronous nature of Javascript. Some examples using ajax with callback and setTimeout</p>
 					</section>
+          <section>
+<pre><code contenteditable>User me = TwitterUserSerivce.getUser(&quot;warnsberg&quot;);
+List&lt;User&gt; followers = TwitterUserService.getFollowers(me);
+List&lt;Tweets&gt; tweets = new ArrayList&lt;Tweets&gt;();
+tweets.addAll(TwitterService.loadRecentTweets(followers));
+System.out.println(Joiner.on(&quot;, &quot;).join(tweets));</code></pre>
+          </section>
+          <section>
+            <h3>What would happen in Javascript</h3>
+            <p class="fragment">
+              <img src="img/blocking-script.png" alt="" />
+            </p>
+          </section>
 					<section>
-						<h2>Single threaded</h2>
-						<p>Javascript is single threaded</p>
+						<h2>Javascript is single threaded</h2>
+						<p class="fragment">We need to avoid blocking the UI thread at all times.</p>
 					</section>
 					<section>
 						<h2>Event loop</h2>
-						<p>Javascript runs in an event loop</p>
+						<p class="fragment">Javascript uses an event loop for concurrency.</p>
+						<p class="fragment">When it needs to do something that won't return immediately, it is done asynchrounsly.</p>
 					</section>
+          <section>
+            <h2>The basic idea</h2>
+            <p>&nbsp;</p>
+            <pre><code contenteditable>twitter.getUser(callbackFunction);</code></pre>
+            <pre class="fragment"><code contenteditable>twitter.getUser({
+  success: function(user){ console.log(user); }
+});</code></pre>
+          </section>
+          <section>
+            <h2>Async error handling</h2>
+            <p>&nbsp;</p>
+            <pre class="fragment"><code contenteditable>twitter.getUser(function(error, user){ /* check if there was an error */ });</code></pre>
+            <pre class="fragment"><code contenteditable>twitter.getUser({
+  success: function(user){ /* ... */ },
+  error: function(error){ /* ... */ }
+});</code></pre>
 				</section>
+        <section>
+        <h2>Rembember our old example?</h2>
+        <p>&nbsp;</p>
+<pre><code contenteditable>User me = TwitterUserSerivce.getUser(&quot;warnsberg&quot;);
+List&lt;User&gt; followers = TwitterUserService.getFollowers(me);
+List&lt;Tweets&gt; tweets = new ArrayList&lt;Tweets&gt;();
+tweets.addAll(TwitterService.loadRecentTweets(followers));
+System.out.println(Joiner.on(&quot;, &quot;).join(tweets));</code></pre>
+          <p class="fragment">Hang tight, because this we're going to over lots of things quickly.</p>
+          </section>
+        <section>
+<pre><code contenteditable>twitter.getUser(&quot;warnsberg&quot;, {
+  success: function(user){
+  },
+  error: function(error){
+    console.log('Couldn\'t load tweets :(');
+});</pre></code>
+      </section>
+        <section>
+<pre><code contenteditable> twitter.getUser(&quot;warnsberg&quot;, {
+  success: function(user){
+    twitter.getFollowers(user, {
+      success: function(followers){
+      },
+      error: function(error){
+        console.log('Couldn\'t load tweets :(');
+      }
+    });
+  },
+  error: function(error){
+    console.log('Couldn\'t load tweets :(');
+  }
+}); </pre></code>
+      </section>
+        <section>
+<pre><code contenteditable>twitter.getUser(&quot;warnsberg&quot;, {
+  success: function(user){
+    twitter.getFollowers(user, {
+      success: function(followers){
+        twitter.loadRecentTweets(followers, {
+            success: function(tweets){
+              console.log(tweets.join(', '));
+            },
+            error: function(error){
+              console.log('Couldn\'t load tweets :(');
+            }
+        });
+      },
+      error: function(error){
+        console.log('Couldn\'t load tweets :(');
+      }
+    });
+  },
+  error: function(error){
+    console.log('Couldn\'t load tweets :(');
+  }
+}); </pre></code>
+      </section>
+      <section>
+        <h2>...but that's horrible!</h2>
+      </section>
+      <section>
+        <h2>Functional composition</h2>
+        <p>Functional(ish) programming saves the day!</p>
+      </section>
+    <section>
+<pre><code contenteditable>
+var twitterError = function(error){
+  console.log('Couldn\t load tweets :(');
+};
+
+var loadUser = function(){
+  twitter.getUser('warnsberg', {
+    success: loadFollowers,
+    error: twitterError
+  });
+}
+</code></pre>
+    </section>
+    <section>
+<pre><code contenteditable>
+var loadFollowers = function(user){
+  twitter.getFollowers(user, {
+    success: loadTweets,
+    error: twitterError
+  });
+}
+
+var loadTweets = function(followers){
+  twitter.loadRecentTweets(followers, {
+    success: printTweets,
+    error: twitterError
+  });
+};
+</code></pre>
+    </section>
+    <section>
+<pre><code contenteditable>
+var printTweets = function(tweets){
+  console.log(tweets.join(', '));
+}
+</code></pre>
+    </section>
+    <section>
+      <h2>Ok, that's a bit better.</h2>
+      <p>But we can do better!</p>
+    </section>
+  </section>
 				
 				<section>
 					<h2>Prototype based inheritance</h2>
