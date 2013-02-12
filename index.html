@@ -120,13 +120,84 @@ addTen(20); //30</code></pre>
 				<section>
 					<section>
 						<h2>Closures</h2>
-						<p>In this section Johan will explain Closures.</p>
 					</section>
 					<section>
-						<h2>Code example</h2>
-						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;"> foo = 1;</code></pre>
+						<h2>A simple example</h2>
+						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function makeClosure() {
+  var name = "Johan";
+  return function() {
+    alert(name);
+  };
+}</code></pre>
+						<button class="exec-code">Run it!</button>
+					</section>
+					<section>
+						<h2>A somewhat more advanced example</h2>
+						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function makeAdder(x) {
+  return function(y) {
+    return x + y;
+  };
+}</code></pre>
+						<button class="exec-code">Run it!</button>
+					</section>
+					<section>
+						<h2>Practical closures?</h2>
+						<ul>
+							<li class="fragment">Event handling</li>
+							<li class="fragment">Emulate privacy (Module Pattern)</li>
+						</ul>
+					</section>
+					<section>
+						<h2>The Module Pattern</h2>
+					<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">var myModule = (function() {
+  var privateCounter = 0;
+  function changeBy(val) {
+    privateCounter += val;
+  }
+  return {
+    increment: function() {
+      changeBy(1);
+    },
+    decrement: function() {
+      changeBy(-1);
+    },
+    value: function() {
+      return privateCounter;
+    }
+  };
+})();
+					</pre></code>
+						<button class="exec-code">Run it!</button>
+					</section>
+					
+					<section>
+						<h2>Pitfalls</h2>
+						<ul>
+							<li class="fragment">Creating closures in loops</li>
+							<li class="fragment">Creating closures inside constructor function</li>
+					</section>
+					
+					<section>
+						<h2>Closures in loops</h2>
+						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">var arrayOfFunctions = [];
+for (var i = 0; i < 3; i++) {
+  arrayOfFunctions[i] = function() { alert(i); };
+}
+						</code></pre>
+						<button class="exec-code">Run it!</button>
+					</section>
+					
+					<section>
+						<h2>Closures in constructor</h2>
+						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function MyConstructor(name) {
+  this.name = name;
+  this.getName = function() { return this.name; };
+}</code></pre>
+						<button class="exec-code">Run it!</button>
 					</section>
 				</section>
+				
+				
 
 				<section>
 					<h2>First Class Functions</h2>
