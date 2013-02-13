@@ -64,17 +64,11 @@ h.appendChild(l);</code></pre>
 				<section>
 					<h2>Overview</h2>
 					<ol>
-						<li class="fragment"><strong>Introduction</strong></li>
-						<li class="fragment">
-							<strong>Advanced Characteristics of the language</strong>
-							<ul>
-								<li class="fragment">Closures</li>
-								<li class="fragment">First Class Functions</li>
-								<li class="fragment">Asynchronous programming</li>
-								<li class="fragment">Prototype based inheritance</li>
-								<li class="fragment">This</li>
-							</ul>
-						</li>
+					  <li class="fragment"><strong>First Class Functions (~5)</strong></li>
+						<li class="fragment"><strong>Closures (~8)</strong></li>
+						<li class="fragment"><strong>This (~7)</strong></li>
+						<li class="fragment"><strong>Asynchronous programming (~10)</strong></li>
+						<li class="fragment"><strong>Prototype based inheritance (~10)</strong></li>
 						<li class="fragment"><strong>Tools, frameworks, projects</strong></li>
 					</ol>
 
@@ -85,35 +79,78 @@ h.appendChild(l);</code></pre>
 				
 				<section>
 					<section>
-						<h2>Introduction</h2>
-						<blockquote>
-							Coding Javascript is like running with scissors - Very fun, but potentially dangerous
-						</blockquote>
-						<img src="img/running.gif" alt="Running with scissors" />
+						<h2>First Class Functions</h2>
+						<img src="img/firstclass.jpg" alt="First Class Functions" />
+						<p>In this section Johan will explain what it means that Javascript functions are first class.</p>
 					</section>
 					<section>
-						<blockquote>
-							With great power comes great responsibility
-						</blockquote>
-					</section>
-					<section>
-						<h3>Lots of bad parts</h3>
-						<pre><code contenteditable>alert( "3" -+-+-+ "1" + "1" / "3" * "6" + "2" )</code></pre>
-            <button class="exec-code">Run it!</button>
-            <pre><code contenteditable class="executable">alert( (![]+[])[+[]]+(![]+[])[+!+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]] )</code></pre>
-            <button class="exec-code">Run it!</button>
-					</section>
-					<section>
-						<h3>Some really good parts</h3>
-						<pre><code contenteditable>var add = function(a, b) {
-  return a + b;
+						<p>In Javascript, functions are objects and can thus be treated just like objects</p>
+
+						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function myFunction() {
+  alert("myFunction");
 }
 
-//create function that returns 10 + argument
-var addTen = add.curry(10);
-
-addTen(20); //30</code></pre>
-            <button class="exec-code">Run it!</button>
+alert(myFunction instanceof Object);</code></pre>
+						<button class="exec-code">Run it!</button>
+					</section>
+					
+					<section>
+						<p>They can be stored in variables</p>
+						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">var f = function myFunction() {
+  alert("myFunction");
+}
+f();</code></pre>
+						<button class="exec-code">Run it!</button>
+						
+					</section>
+					<section>
+						<p>They can be sent as arguments to other functions</p>
+						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function myFunction(f) {
+  f();
+}
+</code></pre>
+						<button class="exec-code">Run it!</button>
+						
+					</section>
+					<section>
+						<p>They can be returned from functions</p>
+						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function myFunction() {
+  return function() {
+    alert("johan");							
+  };
+}</code></pre>
+						<button class="exec-code">Run it!</button>
+						
+					</section>
+					
+					<section>
+						<p>They can have properties</p>
+						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function myFunction() {
+  alert("alert!");							
+}
+myFunction.myProperty = "something";</code></pre>
+						<button class="exec-code">Run it!</button>
+						
+					</section>
+					
+					<section>
+						<p>They can be properties</p>
+						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">var myObject = {
+  myFunctionAsProperty: function() { alert("yeah"); }
+};</code></pre>
+						<button class="exec-code">Run it!</button>
+						
+					</section>
+					
+					<section>
+						<p>They can be dynamically created</p>
+						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function createFunction(whatToAlert) {
+  return function() {
+    alert(whatToAlert);
+  };
+}</code></pre>
+						<button class="exec-code">Run it!</button>
+						
 					</section>
 				</section>
 
@@ -196,87 +233,11 @@ for (var i = 0; i < 3; i++) {
 						<button class="exec-code">Run it!</button>
 					</section>
 				</section>
-				
-				
 
 				<section>
-					<section>
-						<h2>First Class Functions</h2>
-						<img src="img/firstclass.jpg" alt="First Class Functions" />
-						<p>In this section Johan will explain what it means that Javascript functions are first class.</p>
-					</section>
-					<section>
-						<p>In Javascript, functions are objects and can thus be treated just like objects</p>
-
-						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function myFunction() {
-  alert("myFunction");
-}
-
-alert(myFunction instanceof Object);</code></pre>
-						<button class="exec-code">Run it!</button>
-					</section>
-					
-					<section>
-						<p>They can be stored in variables</p>
-						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">var f = function myFunction() {
-  alert("myFunction");
-}
-f();</code></pre>
-						<button class="exec-code">Run it!</button>
-						
-					</section>
-					<section>
-						<p>They can be sent as arguments to other functions</p>
-						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function myFunction(f) {
-  f();
-}
-</code></pre>
-						<button class="exec-code">Run it!</button>
-						
-					</section>
-					<section>
-						<p>They can be returned from functions</p>
-						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function myFunction() {
-  return function() {
-    alert("johan");							
-  };
-}</code></pre>
-						<button class="exec-code">Run it!</button>
-						
-					</section>
-					
-					<section>
-						<p>They can have properties</p>
-						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function myFunction() {
-  alert("alert!");							
-}
-myFunction.myProperty = "something";</code></pre>
-						<button class="exec-code">Run it!</button>
-						
-					</section>
-					
-					<section>
-						<p>They can be properties</p>
-						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">var myObject = {
-  myFunctionAsProperty: function() { alert("yeah"); }
-};</code></pre>
-						<button class="exec-code">Run it!</button>
-						
-					</section>
-					
-					<section>
-						<p>They can be dynamically created</p>
-						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function createFunction(whatToAlert) {
-  return function() {
-    alert(whatToAlert);
-  };
-}</code></pre>
-						<button class="exec-code">Run it!</button>
-						
-					</section>
+					<h2>this</h2>
+					<p>In this section Fredrik will talk about the very special keyword "this" that is crucial to understanding Javascript.</p>
 				</section>
-				
-				
 
 				<section>
 					<section>
@@ -383,7 +344,7 @@ System.out.println(Joiner.on(&quot;, &quot;).join(tweets));</code></pre>
         <h2>...but that's horrible!</h2>
       </section>
       <section>
-        <h2>Functional composition</h2>
+        <h2>Taming the async</h2>
         <p>Functional(ish) programming saves the day!</p>
       </section>
     <section>
@@ -428,6 +389,100 @@ var printTweets = function(tweets){
       <h2>Ok, that's a bit better.</h2>
       <p>But we can do better!</p>
     </section>
+    <section>
+      <h2>Flow control</h2>
+      <p>Composing small, re-usable parts.</p>
+    </section>
+    <section>
+      <h2>Remember this?</h2>
+      <p>&nbsp;</p>
+      <pre><code>asyncFunction(callback(err, result){});</code></pre>
+    </section>
+    <section>
+<pre><code contenteditable> var twitterError = function(error){
+  console.log('Couldn\t load tweets :(');
+};
+
+var loadUser = function(next){
+  if(err) return next(err);
+  twitter.getUser('warnsberg', next);
+}
+
+var loadFollowers = function(err, user, next){
+  if(err) return next(err);
+  twitter.getFollowers(user, next);
+}
+
+var loadTweets = function(err, followers, next){
+  if(err) return next(err);
+  twitter.loadRecentTweets(followers, next);
+}); </code></pre>
+    </section>
+    <section>
+      <h2>...and our code turns into</h2>
+      <p>&nbsp;</p>
+      <pre><code>async.waterfall([loadUser, loadFollowers, loadTweets],
+  function(err, tweets){
+    if(err) return console.log('Twitter error :(');
+    console.log(tweets.join(', '));
+  }
+);
+</code></pre>
+    </section>
+    <section>
+      <h2>Promises</h2>
+      <p>Giving async operations an object representation.</p>
+    </section>
+    <section>
+      <h2>Basic API</h2>
+      <p>&nbsp;</p>
+      <code class="fragment">var promise = new Promise();</code>
+      <code class="fragment">promise.then(callback);</code>
+      <code class="fragment">promise.error(callback);</code>
+      <code class="fragment">promise.resolve(value);</code>
+      <code class="fragment">promise.reject(error);</code>
+    </section>
+
+    <section>
+      <h2>Promises are chainable</h2>
+<p>&nbsp;</p>
+      <pre class="fragment"><code>var promise = new Promise();
+promise.then(function(value){
+  return doSomething(value);
+}).then(function(value){
+  return doSomethingElse(value);
+}, function(error){
+  console.log('Error: ', error);
+});</code></pre>
+    </section>
+    <section>
+    <h2>And our example turns into this</h2>
+    <pre><code>twitter.getUser('warnsberg').then(function(user){
+  return twitter.getFollowers(user);
+}).then(function(followers){
+  return twitter.loadRecentTweets(followers);
+}).then(function(tweets){
+  console.log(tweets.join(', '));
+}, function(error){
+  console.log('Couldn\'t load tweets :(');
+});
+</pre></code>
+    </section>
+    <section>
+      <h2>...and in ES.Next</h2>
+      <pre><code>spawn(function*() {
+  try {
+    let user = yield twitter.getUser('warnsberg');
+    let followers = yield twitter.getFollowers(user);
+    let tweets = yield twitter.loadRecentTweets(followers);
+    console.log(tweets.join(', '));
+  } catch(e) {
+    console.log('Couldn\'t load tweets :(');
+  }
+});
+</code></pre>
+    </section>
+
   </section>
 				
 				<section>
@@ -447,11 +502,6 @@ var printTweets = function(tweets){
 					<section>
 						<p>You inherit from an actual object, not from a class (blueprint). The inheritance is reflected in the "Prototype Chain".</p>
 					</section>
-				</section>
-				
-				<section>
-					<h2>this</h2>
-					<p>In this section Fredrik will talk about the very special keyword "this" that is crucial to understanding Javascript.</p>
 				</section>
 
       <section>
@@ -503,7 +553,15 @@ var printTweets = function(tweets){
 
 		<section>
 			<h2>Summary</h2>
-			<p>A summary of what's been covered</p>
+			<p>In Javascript...</p>
+			<ol>
+			  <li class="fragment">...functions are First Class Citizens.</li>
+				<li class="fragment">...functions remember their context in "Closures".</li>
+				<li class="fragment">..."this" is a VERY special keyword.</li>
+				<li class="fragment">...you need to structure your callbacks.</li>
+				<li class="fragment">...inheritance is based on objects (prototypes) not classes.</li>
+				<li class="fragment">...there are lots of great tools, frameworks and projects for you to discover.</li>
+			</ol>
 		</section>
 
       <section>

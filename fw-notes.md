@@ -84,31 +84,62 @@ var twitterError = function(error){
 	console.log('Couldn\t load tweets :(');
 };
 
-var loadUser = function(err, next){
+var loadUser = function(username, next){
 	if(err) return next(err);
-	twitter.getUser('warnsberg', {
-		success: next.bind(this, null),
-		error: next
-	});
+	twitter.getUser(username, next);
 }
 
 var loadFollowers = function(err, user, next){
 	if(err) return next(err);
-	twitter.getFollowers(user, {
-		success: next.bind(this, null),
-		error: next
-	});
+	twitter.getFollowers(user, next);
 }
 
 var loadTweets = function(err, followers, next){
 	if(err) return next(err);
-	twitter.loadRecentTweets(followers, {
-		success: next.bind(this, null),
-	  error: next
-	});
-};
+	twitter.loadRecentTweets(followers, next};
+});
 
-async.waterfall([loadUser, loadFollowers, loadTweets], function(err, tweets){
+async.waterfall([loadUser, loadFollowers, loadTweets], 'warnsberg', function(err, tweets){
 	if(err) return console.log('Twitter error :(');
 	console.log(tweets.join(', '));
+});
+
+
+
+
+
+
+
+twitter.getUser('warnsberg').then(function(user){
+  return twitter.getFollowers(user);
+}).then(function(followers){
+  return twitter.loadRecentTweets(followers);
+}).then(function(tweets){
+  console.log(tweets.join(', '));
+}, function(error){
+  console.log('Couldn\'t load tweets :(');
+});
+
+
+, {
+  success: function(user){
+    twitter.getFollowers(user, {
+      success: function(followers){
+        twitter.loadRecentTweets(followers, {
+            success: function(tweets){
+              console.log(tweets.join(', '));
+            },
+            error: function(error){
+              console.log('Couldn\'t load tweets :(');
+            }
+        });
+      },
+      error: function(error){
+        console.log('Couldn\'t load tweets :(');
+      }
+    });
+  },
+  error: function(error){
+    console.log('Couldn\'t load tweets :(');
+  }
 });
