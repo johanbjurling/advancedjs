@@ -80,7 +80,7 @@ h.appendChild(l);</code></pre>
 				<section>
 					<section>
 						<h2>First Class Functions</h2>
-						<img src="img/firstclass.jpg" alt="First Class Functions" />
+						<img src="img/firstclass.jpg" alt="First Class Functions" style="width:400px;" />
 						<p>In this section Johan will explain what it means that Javascript functions are first class.</p>
 					</section>
 					<section>
@@ -502,6 +502,26 @@ promise.then(function(value){
 					<section>
 						<p>You inherit from an actual object, not from a class (blueprint). The inheritance is reflected in the "Prototype Chain".</p>
 					</section>
+					
+					<section>
+						<img src="img/inheritance.png" style="width: 400px;" />
+					</section>
+					
+					<section>
+						<p>This means prototype based inheritance is in fact much more similar to real life.</p>
+					</section>
+					
+					<section>
+						<p>In practice</p>
+<pre><code contenteditable>function Sheep() {
+  this.name = "Dolly's mother";
+}
+	
+function Clone() {
+}
+</code></pre>
+						<button class="exec-code">Run it!</button>
+					</section>
 				</section>
 
       <section>
@@ -532,8 +552,6 @@ promise.then(function(value){
             <small>Unit testint framework  &ndash; <a href="http://qunitjs.com/">qunitjs.com</a></small></li>
             <li class="fragment">JS Test Driver<br />
             <small>Remote unit testing console  &ndash; <a href="https://code.google.com/p/js-test-driver/wiki/GettingStarted">code.google.com/p/js-test-driver</a></small></li>
-            <li class="fragment">Test Swarm<br />
-            <small>Distributed CI for front end Javascript  &ndash; <a href="https://github.com/jquery/testswarm">github.com/jquery/testswarm</a></small></li>
           </ul>
         </section>
         <section>
