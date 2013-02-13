@@ -143,3 +143,76 @@ twitter.getUser('warnsberg').then(function(user){
     console.log('Couldn\'t load tweets :(');
   }
 });
+
+
+
+
+
+´this´
+
+
+alert(this.name); // this === window, or the global context.
+
+
+
+$('a').click(function(){
+  alert(this); // this === the element that fired the event
+});
+
+
+
+var obj = {
+  name: 'An object',
+  greet: function(greeting){
+    alert(greeting + this.name);
+  }
+};
+
+obj.geet('Hello, ');
+
+
+var obj = {
+  name: 'An object',
+  init: function(){
+    var self = this;
+    var test = function(){
+      alert(this.name); // this === window
+      alert(self.name);
+    }
+    test();
+  }
+};
+
+obj.init();
+
+
+var obj = {
+  name: "A name",
+  test: function(greeting){ alert(greeting + this.name); }
+}
+
+var stolen = obj.test;
+stolen("Hello, "); // window.name
+
+
+Function.prototype.call(context, arg1, arg2, ...argN);
+
+Function.prototype.apply(context, [args]);
+
+
+stolen.call(obj, "Bonjour, ");
+
+stolen.apply(obj, ["Guten tag, "]);
+
+
+Function.prototype.bind = function(context){
+  var __func = this,
+      slice  = [].slice,
+      args   = slice.call(arguments, 1);
+  return function(){
+    args = args.concat(slice.call(arguments, 0));
+    __func.apply(context, args);
+  };
+};
+
+stolen.bind(obj).greet('Hello, ');

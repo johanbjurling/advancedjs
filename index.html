@@ -235,8 +235,87 @@ for (var i = 0; i < 3; i++) {
 				</section>
 
 				<section>
-					<h2>this</h2>
-					<p>In this section Fredrik will talk about the very special keyword "this" that is crucial to understanding Javascript.</p>
+          <section>
+            <h2>How 'this' works in Javascript</h2>
+          </section>
+          <section>
+            <h2>You always have 'this' set to something</h2>
+            <p>&nbsp;</p>
+<pre><code>alert(this.name); // this === window, or the global context.</code></pre>
+          </section>
+          <section>
+            <p>&nbsp;</p>
+<pre><code>$('a').click(function(){
+  alert(this); // this === the element that fired the event
+});</code></pre>
+          </section>
+          <section>
+            <p>&nbsp;</p>
+<pre><code>var obj = {
+  name: 'An object',
+  greet: function(greeting){
+    alert(greeting + this.name);
+  }
+};
+obj.greet('Hello, ');
+</code></pre>
+          </section>
+          <section>
+<pre><code>var obj = {
+  name: 'An object',
+  init: function(){
+    var self = this;
+    var test = function(){
+      alert(this.name); // this === window
+      alert(self.name);
+    }
+    test();
+  }
+};
+
+obj.init();</code></pre>
+          </section>
+
+          <section>
+<pre><code> var obj = {
+  name: "A name",
+  test: function(greeting){ alert(greeting + this.name); }
+}
+
+var stolen = obj.test;
+stolen("Hello, "); // window.name </code></pre>
+          </section>
+          <section>
+<h2>Controlling this</h2>
+<p>&nbsp;</p>
+<pre class="fragment"><code>Function.prototype.call(context, arg1, arg2, ...argN);</code></pre>
+
+<pre class="fragment"><code>Function.prototype.apply(context, [args]); </code></pre>
+          </section>
+          <section>
+<pre><code>stolen.call(obj, "Bonjour, ");
+
+stolen.apply(obj, ["Guten tag, "]);</code></pre>
+          </section>
+
+
+          <section>
+            <h2>Remembering this</h2>
+            <p>&nbsp;</p>
+<pre><code>Function.prototype.bind = function(context){
+  var __func = this,
+      slice  = [].slice,
+      args   = slice.call(arguments, 1);
+  return function(){
+    args = args.concat(slice.call(arguments, 0));
+    __func.apply(context, args);
+  };
+}; </code></pre>
+          </section>
+
+          <section>
+<pre><code> stolen.bind(obj).greet('Hello, ');</code></pre>
+          </section>
 				</section>
 
 				<section>
@@ -437,10 +516,9 @@ var loadTweets = function(err, followers, next){
       <h2>Basic API</h2>
       <p>&nbsp;</p>
       <code class="fragment">var promise = new Promise();</code>
-      <code class="fragment">promise.then(callback);</code>
-      <code class="fragment">promise.error(callback);</code>
       <code class="fragment">promise.resolve(value);</code>
       <code class="fragment">promise.reject(error);</code>
+      <code class="fragment">promise.then(callback);</code>
     </section>
 
     <section>
