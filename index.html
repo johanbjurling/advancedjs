@@ -53,12 +53,10 @@
 				</section>
 				<section>
 					<h2>reveal.js</h2>
-					<p>Explain that this presentation is done using reveal.js. Apply new style using Javascript...</p>
 					<pre><code contenteditable>var h = document.getElementsByTagName("head")[0];
 var l = document.createElement("link");
 l.href = "css/theme/netlight.css";
-l.rel = "stylesheet";
-h.appendChild(l);</code></pre>
+l.rel = "stylesheet";</code></pre>
 					<button class="exec-code">Run it!</button>
 				</section>
 				<section>
@@ -582,7 +580,7 @@ promise.then(function(value){
 					</section>
 					
 					<section>
-						<img src="img/inheritance.png" style="width: 400px;" />
+						<img src="img/prototype_chain.png" style="width: 200px;" />
 					</section>
 					
 					<section>
@@ -590,14 +588,34 @@ promise.then(function(value){
 					</section>
 					
 					<section>
-						<p>In practice</p>
+						<p>How is an object's prototype determined?</p>
 <pre><code contenteditable>function Sheep() {
-  this.name = "Dolly's mother";
 }
-	
-function Clone() {
-}
+
 </code></pre>
+						<button class="exec-code">Run it!</button>
+					</section>
+					
+					<section>
+						<p>How can this be used for inheritance?</p>
+					</section>
+					
+					<section>
+						<p>Let's make a Pig Sheep</p>
+						<img src="img/pigsheep.jpg" style="width:400px;"/>
+					</section>
+					
+					<section>
+						<p>Let's make a Pig Sheep</p>
+						<pre><code contenteditable>function Sheep() {
+}
+							
+Sheep.prototype.eyeColor = "blue";
+							
+function PigSheep() {
+}
+							
+						</code></pre>
 						<button class="exec-code">Run it!</button>
 					</section>
 				</section>
