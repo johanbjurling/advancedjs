@@ -239,49 +239,57 @@ for (var i = 0; i < 3; i++) {
           <section>
             <h2>You always have 'this' set to something</h2>
             <p>&nbsp;</p>
-<pre><code>alert(this.name); // this === window, or the global context.</code></pre>
+<pre><code>alert(this); // [object Window]</code></pre>
           </section>
           <section>
             <p>&nbsp;</p>
-<pre><code>$('a').click(function(){
-  alert(this); // this === the element that fired the event
-});</code></pre>
+<pre><code>window.name = "A name";
+var test = function(){
+  alert(this);
+};
+test();
+</code></pre>
+            <button class="exec-code">Run it!</button>
           </section>
           <section>
             <p>&nbsp;</p>
-<pre><code>var obj = {
-  name: 'An object',
+<pre><code>var object = {
+  name: 'A Name',
   greet: function(greeting){
     alert(greeting + this.name);
   }
 };
-obj.greet('Hello, ');
+object.greet('Hello, ');
 </code></pre>
+            <button class="exec-code">Run it!</button>
           </section>
           <section>
-<pre><code>var obj = {
+<pre><code>window.name = "window's name";
+var object = {
   name: 'An object',
   init: function(){
     var self = this;
     var test = function(){
-      alert(this.name); // this === window
+      alert(this.name);
       alert(self.name);
     }
     test();
   }
 };
 
-obj.init();</code></pre>
+object.init();</code></pre>
+            <button class="exec-code">Run it!</button>
           </section>
 
           <section>
-<pre><code> var obj = {
+<pre><code> var object = {
   name: "A name",
   test: function(greeting){ alert(greeting + this.name); }
 }
 
-var stolen = obj.test;
-stolen("Hello, "); // window.name </code></pre>
+var stolen = object.test;
+stolen("Hello, ");</code></pre>
+            <button class="exec-code">Run it!</button>
           </section>
           <section>
 <h2>Controlling this</h2>
@@ -335,17 +343,15 @@ System.out.println(Joiner.on(&quot;, &quot;).join(tweets));</code></pre>
           </section>
 					<section>
 						<h2>Javascript is single threaded</h2>
-						<p class="fragment">We need to avoid blocking the UI thread at all times.</p>
 					</section>
 					<section>
 						<h2>Event loop</h2>
-						<p class="fragment">Javascript uses an event loop for concurrency.</p>
-						<p class="fragment">When it needs to do something that won't return immediately, it is done asynchrounsly.</p>
+						<p class="fragment">When it needs to do something that won't return immediately, it is done asynchronously.</p>
 					</section>
           <section>
             <h2>The basic idea</h2>
             <p>&nbsp;</p>
-            <pre><code contenteditable>twitter.getUser(callbackFunction);</code></pre>
+            <pre class="fragment"><code contenteditable>twitter.getUser(callbackFunction);</code></pre>
             <pre class="fragment"><code contenteditable>twitter.getUser({
   success: function(user){ console.log(user); }
 });</code></pre>
@@ -375,6 +381,7 @@ System.out.println(Joiner.on(&quot;, &quot;).join(tweets));</code></pre>
   },
   error: function(error){
     console.log('Couldn\'t load tweets :(');
+  }
 });</pre></code>
       </section>
         <section>
@@ -422,7 +429,7 @@ System.out.println(Joiner.on(&quot;, &quot;).join(tweets));</code></pre>
       </section>
       <section>
         <h2>Taming the async</h2>
-        <p>Functional(ish) programming saves the day!</p>
+        <p>Named functions saves the day!</p>
       </section>
     <section>
 <pre><code contenteditable>
@@ -461,10 +468,6 @@ var printTweets = function(tweets){
   console.log(tweets.join(', '));
 }
 </code></pre>
-    </section>
-    <section>
-      <h2>Ok, that's a bit better.</h2>
-      <p>But we can do better!</p>
     </section>
     <section>
       <h2>Flow control</h2>
@@ -523,10 +526,11 @@ var loadTweets = function(err, followers, next){
       <h2>Promises are chainable</h2>
 <p>&nbsp;</p>
       <pre class="fragment"><code>var promise = new Promise();
+
 promise.then(function(value){
-  return doSomething(value);
+  /* ... */
 }).then(function(value){
-  return doSomethingElse(value);
+  /* ... */
 }, function(error){
   console.log('Error: ', error);
 });</code></pre>
