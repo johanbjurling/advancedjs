@@ -139,6 +139,18 @@ myFunction.myProperty = "something";</code></pre>
 						<button class="exec-code">Run it!</button>
 						
 					</section>
+					
+					<section>
+						<p>They can be extended</p>
+						<pre><code contenteditable>Function.prototype.curry = function() {
+  var fn = this, slice = [].slice, args = slice.call(arguments);
+  return function() {
+    return fn.apply(this, args.concat(
+	  slice.call(arguments)));
+  };
+};</code></pre>
+						<button class="exec-code">Run it!</button>
+					</section>
 				</section>
 
 				<section>
