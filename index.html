@@ -139,17 +139,6 @@ myFunction.myProperty = "something";</code></pre>
 						<button class="exec-code">Run it!</button>
 						
 					</section>
-					
-					<section>
-						<p>They can be dynamically created</p>
-						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function createFunction(whatToAlert) {
-  return function() {
-    alert(whatToAlert);
-  };
-}</code></pre>
-						<button class="exec-code">Run it!</button>
-						
-					</section>
 				</section>
 
 				<section>
@@ -176,11 +165,8 @@ myFunction.myProperty = "something";</code></pre>
 						<button class="exec-code">Run it!</button>
 					</section>
 					<section>
-						<h2>Practical closures?</h2>
-						<ul>
-							<li class="fragment">Event handling</li>
-							<li class="fragment">Emulate privacy (Module Pattern)</li>
-						</ul>
+						<h2>A practical example</h2>
+						<p class="fragment">Emulate privacy (Module Pattern)</</p>
 					</section>
 					<section>
 						<h2>The Module Pattern</h2>
@@ -206,10 +192,8 @@ myFunction.myProperty = "something";</code></pre>
 					</section>
 					
 					<section>
-						<h2>Pitfalls</h2>
-						<ul>
-							<li class="fragment">Creating closures in loops</li>
-							<li class="fragment">Creating closures inside constructor function</li>
+						<h2>A pitfall</h2>
+						<p class="fragment">Creating closures inside loops</p>
 					</section>
 					
 					<section>
@@ -222,14 +206,6 @@ for (var i = 0; i < 3; i++) {
 						<button class="exec-code">Run it!</button>
 					</section>
 					
-					<section>
-						<p>Closures in constructor</p>
-						<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">function MyConstructor(name) {
-  this.name = name;
-  this.getName = function() { return this.name; };
-}</code></pre>
-						<button class="exec-code">Run it!</button>
-					</section>
 				</section>
 
 				<section>
